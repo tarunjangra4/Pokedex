@@ -5,7 +5,7 @@ import {useParams} from 'react-router-dom';
 
 
 function getPokemonImageFromData(data){
-    const defaultImage = 'https://static.wikia.nocookie.net/pokemon-fano/images/6/6f/Poke_Ball.png/revision/latest/scale-to-width-down/180?cb=20140520015336';
+    // const defaultImage = 'https://static.wikia.nocookie.net/pokemon-fano/images/6/6f/Poke_Ball.png/revision/latest/scale-to-width-down/180?cb=20140520015336';
     const {sprites:{other}} = data;
     const officialArtwork = other['official-artwork'];
     return officialArtwork['front_default'];
@@ -36,18 +36,19 @@ function PokemonPage(){
     const [pokemonData, setPokemonData] = useState(null);
     const [isError, setIsError] = useState();
   
+    const name = params.name;
     useEffect(function(){
-      PokeApi.getPokemoneByName(params.name)
+      PokeApi.getPokemoneByName(name)
         .then((data)=>{
           console.log(data)
           setIsLaoding(false);  // loading indicator will hide after data has been fetched.
           setPokemonData(data); // it set the whole data of the pokemon.
-        }).
-        catch(()=>{
+        })
+        .catch(()=>{
           setIsLaoding(false);
           setIsError(true);
         })
-    }, []);
+    }, [name]);
   
     // it just show the loading indicator untill data not came.
     if(isLaoding){

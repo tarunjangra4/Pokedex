@@ -1,49 +1,42 @@
-import {Link} from 'react-router-dom'
-import sampleSize from 'lodash/sampleSize';
+import {Link} from 'react-router-dom';
+// import sampleSize from 'lodash/sampleSize';
 import {pokemons} from './pokemonList'
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import { Button } from '@material-ui/core';
-import { useState } from 'react';
+import {  useState } from 'react';
+// import {useEffect} from 'react';
 
-// let imgSrc = "";
 
-// function fetchImageUrl(url){
-//   return   fetch(`${url}`,{mode:'cors'})
-//            .then((res)=> {
-//             //  console.log("json",res);
-//              return res.json();
-//            })
-//            .then((data)=>{
-//             //  console.log("data",data);
-//             const {sprites:{other}} = data;
-//             // console.log(other);
-//             const officialArtwork = other['official-artwork'];
-//             // imgSrc = officialArtwork['front_default'];
-//             return officialArtwork['front_default']; 
-//            }) 
-// }
 
-function getPokemonImage(name){
-  return fetch('https://pokeapi.co/api/v2/pokemon/' + name, {mode:'cors'})
-                .then((res)=> res.json())
-                .then((data)=>data);
-                // .then((result)=>result);
+// function getPokemonImage(name){
+//   let response = fetch('https://pokeapi.co/api/v2/pokemon/' + name, {mode:'cors'})
+//                 .then((res)=> res.json());
+//     return response;
+//               // console.log(response);
+//                 // .then((data)=>data);
+//                 // .then((result)=>result);
 
-                // console.log("new data", newData);
-                // const {sprites} = newData;
-                // console.log("sprites",{sprites});
+//                 // console.log("new data", newData);
+//                 // const {sprites} = newData;
+//                 // console.log("sprites",{sprites});
                 
-  // const defaultImage = 'https://static.wikia.nocookie.net/pokemon-fano/images/6/6f/Poke_Ball.png/revision/latest/scale-to-width-down/180?cb=20140520015336';
-  // const {sprites:{other}} = newData;
-  // const officialArtwork = other['official-artwork'];
-  // return officialArtwork['front_default'] ? officialArtwork['front_default'] : defaultImage;
-}
+//   // const defaultImage = 'https://static.wikia.nocookie.net/pokemon-fano/images/6/6f/Poke_Ball.png/revision/latest/scale-to-width-down/180?cb=20140520015336';
+//   // const {sprites:{other}} = newData;
+//   // const officialArtwork = other['official-artwork'];
+//   // return officialArtwork['front_default'];
+// }
 
 
 function GalleryItem(props){
     // it is use for changing the color of fav button
     const {children,name} = props;
-    // const imgSrc = getPokemonImage(data);
+    // const [imgSrc, setImgSrc] = useState("");
+
+    // useEffect(function(){
+    //   let result = getPokemonImage(name);
+    //   setImgSrc(result);
+    // },[])
+    // // const imgSrc = getPokemonImage(name);
     // console.log("imag src",imgSrc);
     const [isInLocalStorage, setIsInLocalStorage] = useState(function(){
       const val = localStorage.getItem('pokemons');
@@ -74,6 +67,7 @@ function GalleryItem(props){
         </div>  
         <img src='https://static.wikia.nocookie.net/pokemon-fano/images/6/6f/Poke_Ball.png'
               style={{height:'100px'}}
+              alt="pokemon"
         />
         <Button onClick={function(){
                 if(!isInLocalStorage){
