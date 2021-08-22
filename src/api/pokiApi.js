@@ -6,7 +6,7 @@ class PokeApi{
     }
 
     static getPokemoneByName(pokemonName){
-       return   fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`,{mode:'cors'})
+       return   fetch('https://pokeapi.co/api/v2/pokemon/' + pokemonName, {mode:'cors'})
                 .then((res)=> res.json());
     }
 }
